@@ -1,15 +1,17 @@
 package mr_bet;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 public class Campeonato {
 	private String nome;
 	private int participantes;
+	private HashSet<Time> times;
 	
-	
-	public Campeonato(String nome, int participantes) {
+	public Campeonato(String nome, int participantes, HashSet<Time> times) {
 		this.nome = nome;
 		this.participantes = participantes;
+		this.times = new HashSet<Time>();
 	}
 	
 	@Override
@@ -26,6 +28,15 @@ public class Campeonato {
 			return false;
 		Campeonato other = (Campeonato) obj;
 		return Objects.equals(nome, other.nome);
+	}
+	
+	public boolean incluiTime(Time time) {
+		
+		if (this.times.size() < this.participantes) {
+			this.times.add(time);
+			return true;
+		}
+		return false;
 	}
 
 

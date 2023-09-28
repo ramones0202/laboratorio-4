@@ -83,7 +83,6 @@ public class MainMrBet {
 		System.out.println("Participantes: ");
 		scanner.nextLine();
 		int participantes = scanner.nextInt();
-		
 		System.out.println(sistema.cadastraCampeonato(nome, participantes));
 	}
 	

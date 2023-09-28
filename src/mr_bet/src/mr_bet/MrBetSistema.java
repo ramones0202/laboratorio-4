@@ -9,6 +9,7 @@ public class MrBetSistema {
 	
 	public MrBetSistema() {
 		this.times = new HashMap <String, Time>();
+		this.campeonatos = new HashMap <String, Campeonato>();
 	}
 
 
@@ -30,10 +31,21 @@ public class MrBetSistema {
 		}
 	
 	public String cadastraCampeonato(String nome, int participantes) {
-		if (this.campeonatos.containsKey(nome)) {
+		if (this.campeonatos.containsKey(nome.toUpperCase()) && campeonatos != null) {
 			return "Campeonato já existe!";
+			
 		}
-		return  "Campeonato existe";
+		
+		Campeonato novoCampeonato = new Campeonato(nome, participantes, this.times); 
+		this.campeonatos.put(nome.toUpperCase(), novoCampeonato);
+		return  "Campeonato adicionado";		
+	}
+	
+	public void inclueTimeEmCampeonato(String codigoCampeonato, String codigoTime) {
+		if(!this.times.containsKey(codigoTime)) {
+			throw new IllegalArgumentException("Time não existe");
+			
+		}
 	}
 }
 
