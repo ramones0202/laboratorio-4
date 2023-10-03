@@ -36,16 +36,28 @@ public class MrBetSistema {
 			
 		}
 		
-		Campeonato novoCampeonato = new Campeonato(nome, participantes, this.times); 
+		Campeonato novoCampeonato = new Campeonato(nome, participantes); 
 		this.campeonatos.put(nome.toUpperCase(), novoCampeonato);
 		return  "Campeonato adicionado";		
 	}
 	
-	public void inclueTimeEmCampeonato(String codigoCampeonato, String codigoTime) {
+	public String inclueTimeEmCampeonato(String codigoTime, String codigoCampeonato) {
 		if(!this.times.containsKey(codigoTime)) {
 			throw new IllegalArgumentException("Time não existe");
-			
 		}
+		
+		if (!this.campeonatos.containsKey(codigoCampeonato)) {
+			throw new IllegalArgumentException("Campeonato não existe");
+		}
+		
+	//	for (Campeonato campeonato : this.campeonatos.values()) {
+	//		if (campeonato.pa).))
+	//	}
+		if(this.campeonatos.get(codigoCampeonato).incluiTime(times.get(codigoTime))) {
+			return "Time incluído no campeonato!";
+		}
+		return "Todos os times desse campeonato já foram incluídos";
+		
 	}
 }
 

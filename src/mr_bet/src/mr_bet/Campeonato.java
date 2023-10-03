@@ -8,12 +8,12 @@ public class Campeonato {
 	private int participantes;
 	private HashSet<Time> times;
 	
-	public Campeonato(String nome, int participantes, HashSet<Time> times) {
+	public Campeonato(String nome, int participantes) {
 		this.nome = nome;
 		this.participantes = participantes;
 		this.times = new HashSet<Time>();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(nome);

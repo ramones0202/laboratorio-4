@@ -28,7 +28,7 @@ public class MainMrBet {
 						"(T)Tentar a sorte e status\n" +
 						"(!)Já pode fechar o programa!\n\n" +
 						"Opção> ");
-		return scanner.next().toUpperCase();
+		return scanner.nextLine().toUpperCase();
 	}
 	
 	private static void comando(String opcao, MrBetSistema sistema,  Scanner scanner) {
@@ -43,7 +43,7 @@ public class MainMrBet {
 			cadastraCampeonato(sistema, scanner);
 			break;
 		case "B":
-			//sai();
+			inclueTimeEmCampeonato(sistema, scanner);
 			break;
 		case "E":
 			//sai();
@@ -61,29 +61,46 @@ public class MainMrBet {
 	
 	private static void incluiTime(MrBetSistema sistema, Scanner scanner) {
 		System.out.println("Código: ");
-		String codigo = scanner.next();
+		String codigo = scanner.nextLine();
 		System.out.println("Nome: ");
-		String nome = scanner.next();
+		String nome = scanner.nextLine();
 		System.out.println("Mascote: ");
-		String mascote = scanner.next();
+		String mascote = scanner.nextLine();
 		System.out.println(sistema.incluiTime(codigo, nome, mascote));
 		//System.out.println("Inclusão realizada!");
 	}
 	
 	private static void recuperaTime(MrBetSistema sistema, Scanner scanner) {
 		System.out.println("Código: ");
-		String codigo = scanner.next();
+		String codigo = scanner.nextLine();
 		
 		System.out.println(sistema.recuperaTime(codigo));
 	}
 	
 	private static void cadastraCampeonato(MrBetSistema sistema, Scanner scanner) {
 		System.out.println("Campeonato: ");
-		String nome = scanner.next();
+		String nome = scanner.nextLine();
 		System.out.println("Participantes: ");
-		scanner.nextLine();
 		int participantes = scanner.nextInt();
+		scanner.nextLine();
 		System.out.println(sistema.cadastraCampeonato(nome, participantes));
+	}
+	
+	private static void inclueTimeEmCampeonato(MrBetSistema sistema, Scanner scanner) {
+		System.out.println("(I) Incluir time em campeonato ou (V) Verificar se time está em campeonato?");
+		String opcao = scanner.nextLine().toUpperCase();
+		
+		try {
+			if (opcao.equals("I")) {
+				System.out.println("Código: ");
+				String codigoTime = scanner.nextLine();
+				System.out.println("Campeonato: ");
+				String codigoCampeonato = scanner.nextLine();
+				System.out.println(sistema.inclueTimeEmCampeonato(codigoTime, codigoCampeonato));
+			}
+		} catch(IllegalArgumentException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 	
 }
