@@ -46,7 +46,7 @@ public class MainMrBet {
 			inclueTimeEmCampeonato(sistema, scanner);
 			break;
 		case "E":
-			//sai();
+			exibeCampeonatosDeTime(sistema, scanner);
 			break;
 		case "T":
 			//sai();
@@ -95,12 +95,30 @@ public class MainMrBet {
 				System.out.println("Código: ");
 				String codigoTime = scanner.nextLine();
 				System.out.println("Campeonato: ");
-				String codigoCampeonato = scanner.nextLine();
+				String codigoCampeonato = scanner.nextLine().toUpperCase();
 				System.out.println(sistema.inclueTimeEmCampeonato(codigoTime, codigoCampeonato));
+			}
+			
+			if (opcao.equals("V")) {
+				System.out.println("Código: ");
+				String codigoTime = scanner.nextLine();
+				System.out.println("Campeonato: ");
+				String codigoCampeonato = scanner.nextLine().toUpperCase();
+				System.out.println(sistema.verificaTimeEmCampeonato(codigoTime, codigoCampeonato));
 			}
 		} catch(IllegalArgumentException e) {
 			System.err.println(e.getMessage());
 		}
 	}
 	
+	public static void exibeCampeonatosDeTime(MrBetSistema sistema, Scanner scanner) {
+		try {
+		System.out.println("Time: ");
+		String codigoTime = scanner.nextLine();
+		System.out.println(sistema.exibeCampeonatosDoTime(codigoTime));
+		}
+		catch(IllegalArgumentException e) {
+			e.getMessage();
+		}
+	}
 }

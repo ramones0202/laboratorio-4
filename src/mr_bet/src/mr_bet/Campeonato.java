@@ -39,5 +39,18 @@ public class Campeonato {
 		return false;
 	}
 
+	public HashSet<Time> getTimes() {
+		return times;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public int getParticipantes() {
+		return participantes;
+	}
+	
+	
 
 }

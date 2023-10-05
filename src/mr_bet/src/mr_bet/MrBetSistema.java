@@ -3,6 +3,7 @@ package mr_bet;
 import java.util.HashMap;
 
 
+
 public class MrBetSistema {
 	private HashMap<String, Time> times;
 	private HashMap<String, Campeonato> campeonatos;
@@ -54,10 +55,45 @@ public class MrBetSistema {
 	//		if (campeonato.pa).))
 	//	}
 		if(this.campeonatos.get(codigoCampeonato).incluiTime(times.get(codigoTime))) {
+			this.times.get(codigoTime).incluiCampeonato(this.campeonatos.get(codigoCampeonato));
 			return "Time incluído no campeonato!";
 		}
 		return "Todos os times desse campeonato já foram incluídos";
 		
+	}
+	
+	public String verificaTimeEmCampeonato(String codigoTime, String codigoCampeoanto) {
+		//if (!this.campeonatos.get(codigoCampeoanto).getTimes().contains(this.times)) {
+		//	return "O time não está no campeonato!";
+		//}
+		
+		if (!this.campeonatos.containsKey(codigoCampeoanto)) {
+			throw new IllegalArgumentException("O campeonato não existe!"); 
+		}
+		if (!this.times.containsKey(codigoTime)) {
+			throw new IllegalArgumentException("O time não existe!"); 
+		}
+		
+		if (!this.campeonatos.get(codigoCampeoanto).getTimes().contains(this.times.get(codigoTime))) {
+			return "O time não está no campeonato!";
+		}
+		return "O time está no campeonato!";
+	}
+	
+	public StringBuffer exibeCampeonatosDoTime(String codigoTime) {
+		if (!this.times.containsKey(codigoTime)) {
+			throw new IllegalArgumentException("O time não existe!"); 
+		}
+		
+		StringBuffer strBuffer = new StringBuffer();
+		strBuffer.append("Campeonatos do " + this.times.get(codigoTime).getNome() + ": ");
+		
+		for (Campeonato c : this.times.get(codigoTime).getCampeonatos()) {
+			strBuffer.append("\n");
+			strBuffer.append("* " + c.getNome() + " - " + c.getTimes().size() + "/" + c.getParticipantes());
+		}
+		
+		return strBuffer;
 	}
 }
 
